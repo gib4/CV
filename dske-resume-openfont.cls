@@ -1,5 +1,5 @@
 % Intro Options
-\ProvidesClass{deedy-resume-openfont}[2014/04/30 CV class]
+\ProvidesClass{dske-resume-openfont}[2025/01/20 CV class]
 \NeedsTeXFormat{LaTeX2e}
 \DeclareOption{print}{\def\@cv@print{}}
 \DeclareOption*{%
@@ -34,18 +34,17 @@
 ]
 
 % For the main content (clean sans-serif like in the image)
-\setmainfont{Helvetica Neue}[
-    Path = fonts/helvetica-neue/,
-    BoldFont=HelveticaNeue-Bold,
-    ItalicFont=HelveticaNeue-Italic,
-    BoldItalicFont=HelveticaNeue-BoldItalic
-]
+\setmainfont[
+    BoldFont=Arial Bold,
+    ItalicFont=Arial Italic,
+    BoldItalicFont=Arial Bold Italic
+]{Arial}
 
 % For headings and subheadings
 \setsansfont{Helvetica Neue Light}[
     Path = fonts/helvetica-neue/,
-    BoldFont=HelveticaNeue-Medium,
-    ItalicFont=HelveticaNeue-LightItalic
+    BoldFont=HelveticaNeueMedium,
+    ItalicFont=HelveticaNeueLightItalic
 ]
 
 % For sections that were using Lato/Raleway, we'll use these fonts instead
@@ -84,14 +83,14 @@ Last Updated on \today
 
 % Headings command
 \titleformat{\section}{\color{headings}
-\scshape\fontspec[Path = fonts/lato/]{Lato-Lig}\fontsize{16pt}{24pt}\selectfont \raggedright\uppercase}{}{0em}{}
+\scshape\fontsize{16pt}{24pt}\selectfont \raggedright\uppercase}{}{0em}{}
 
 % Subeadings command
 \titleformat{\subsection}{
-\color{subheadings}\fontspec[Path = fonts/lato/]{Lato-Bol}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase}{}{0em}{}
+\color{subheadings}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase}{}{0em}{}
 
 \newcommand{\runsubsection}[1]{
-\color{subheadings}\fontspec[Path = fonts/lato/]{Lato-Bol}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase {#1} \normalfont}
+\color{subheadings}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase {#1} \normalfont}
 
 % Descriptors command
 \newcommand{\descript}[1]{
