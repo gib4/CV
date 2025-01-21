@@ -8,29 +8,42 @@
 \ProcessOptions\relax
 \LoadClass{article}
 
-% Package Imports
-\usepackage[hmargin=1.25cm, vmargin=0.75cm]{geometry}
+% Essential packages
+\usepackage[hmargin=1.0cm, vmargin=0.7cm]{geometry}
 \usepackage[hidelinks]{hyperref}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[absolute]{textpos}
+\usepackage[UKenglish]{isodate}
+\usepackage{titlesec}
+\usepackage{cite}
 
 % Publications
-\usepackage{cite}
 \renewcommand\refname{\vskip -1.5cm}
 
 % Color definitions
-\usepackage[usenames,dvipsnames]{xcolor} 
-\definecolor{date}{HTML}{666666} 
-\definecolor{primary}{HTML}{2b2b2b} 
-\definecolor{headings}{HTML}{6A6A6A}
-\definecolor{subheadings}{HTML}{333333}
+\definecolor{accent}{RGB}{0, 70, 140}
+\definecolor{heading}{RGB}{106, 106, 106}
+\definecolor{subheading}{RGB}{51, 51, 51}
+\definecolor{datecolor}{RGB}{102, 102, 102}
 
 % Set main fonts
 \usepackage{fontspec}
 
-% For the large name display (similar to the serif font used for "John Quebeck")
-\newfontfamily\namefont{Playfair Display}[
-    Path = fonts/playfair-display/,
-    BoldFont=PlayfairDisplay-Bold,
-    ItalicFont=PlayfairDisplay-Italic
+% Main font setup with system fonts
+\setmainfont{Arial}[
+    BoldFont=Arial Bold,
+    ItalicFont=Arial Italic
+]
+
+% Heading fonts - replacing Helvetica with Arial
+\setsansfont{Arial}[
+    BoldFont=Arial Bold,
+    ItalicFont=Arial Italic
+]
+
+% Name font
+\newfontfamily\namefont{Times New Roman}[
+    BoldFont=Times New Roman Bold
 ]
 
 % For the main content (clean sans-serif like in the image)
@@ -40,68 +53,79 @@
     BoldItalicFont=Arial Bold Italic
 ]{Arial}
 
-% For headings and subheadings
-\setsansfont{Helvetica Neue Light}[
-    Path = fonts/helvetica-neue/,
-    BoldFont=HelveticaNeueMedium,
-    ItalicFont=HelveticaNeueLightItalic
+% For sections that were using Lato/Raleway, we'll use these fonts instead
+\newfontfamily\headingfont{Arial}[
+    BoldFont=Arial Bold,
+    ItalicFont=Arial Italic
+]
+\newfontfamily\subheadingfont{Arial}[
+    BoldFont=Arial Bold,
+    ItalicFont=Arial Italic
 ]
 
-% For sections that were using Lato/Raleway, we'll use these fonts instead
-\newfontfamily\headingfont{Helvetica}
-\newfontfamily\subheadingfont{Arial}
-
 % Date command
-\usepackage[absolute]{textpos}
-\usepackage[UKenglish]{isodate}
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{1mm}
-\newcommand{\lastupdated}{\begin{textblock}{60}(155,5)
-\color{date}\fontspec[Path = fonts/raleway/]{Raleway-ExtraLight}\fontsize{8pt}{10pt}\selectfont 
-Last Updated on \today
-\end{textblock}}
+\newcommand{\lastupdated}{
+    \begin{textblock}{60}(155,5)
+        \color{datecolor}
+        \fontsize{8pt}{10pt}\selectfont 
+        Last Updated on \today
+    \end{textblock}
+}
 
 % Name command
 \newcommand{\namesection}[3]{
 \centering{
-\fontsize{40pt}{60pt}
+\fontsize{36pt}{54pt}
 \namefont #1 
 \namefont #2
 } \\[5pt]
 \centering{
-\color{headings}
+\color{heading}
 \sffamily\fontsize{11pt}{14pt}\selectfont #3}
-\noindent\makebox[\linewidth]{\color{headings}\rule{\paperwidth}{0.4pt}}
+\noindent\makebox[\linewidth]{\color{heading}\rule{\paperwidth}{0.4pt}}
 \vspace{-15pt}
 }
 
-% Section seperators 
-\usepackage{titlesec}
-\titlespacing{\section}{0pt}{0pt}{0pt} 
+% Section formatting
+\titlespacing{\section}{0pt}{0pt}{0pt}
 \titlespacing{\subsection}{0pt}{0pt}{0pt}
-\newcommand{\sectionsep}{\vspace{8pt}}
+\newcommand{\sectionsep}{\vspace{6pt}}
 
-% Headings command
-\titleformat{\section}{\color{headings}
-\scshape\fontsize{16pt}{24pt}\selectfont \raggedright\uppercase}{}{0em}{}
+\titleformat{\section}{
+    \color{heading}\scshape
+    \fontsize{14pt}{20pt}\selectfont
+    \raggedright\uppercase
+}{}{0em}{}
 
-% Subeadings command
 \titleformat{\subsection}{
-\color{subheadings}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase}{}{0em}{}
+    \color{subheading}
+    \fontsize{11pt}{11pt}\selectfont
+    \bfseries\uppercase
+}{}{0em}{}
 
 \newcommand{\runsubsection}[1]{
-\color{subheadings}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase {#1} \normalfont}
+\color{subheading}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase {#1} \normalfont}
 
 % Descriptors command
 \newcommand{\descript}[1]{
-\color{subheadings}\raggedright\scshape\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{11pt}{13pt}\selectfont {#1 \\} \normalfont}
+\color{subheading}\raggedright\scshape\fontsize{11pt}{13pt}\selectfont {#1 \\} \normalfont}
 
 % Location command
 \newcommand{\location}[1]{
-\color{headings}\raggedright\fontspec[Path = fonts/raleway/]{Raleway-Medium}\fontsize{10pt}{12pt}\selectfont {#1\\} \normalfont}
+\color{datecolor}\raggedright\fontsize{10pt}{12pt}\selectfont {#1\\} \normalfont}
 
 % Bullet Lists with fewer gaps command
 \newenvironment{tightemize}{
 \vspace{-\topsep}\begin{itemize}\itemsep1pt \parskip0pt \parsep0pt}
 {\end{itemize}\vspace{-\topsep}}
 
+% Section with lines command
+\newcommand{\sectionwithlines}[1]{%
+    \vspace{0.3cm}%
+    {\noindent\color{accent}\rule{\linewidth}{0.4pt}}%
+    \section{#1}%
+    {\noindent\color{accent}\rule{\linewidth}{0.4pt}}%
+    \vspace{0.2cm}%
+}
