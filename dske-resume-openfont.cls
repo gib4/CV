@@ -14,13 +14,13 @@
 %                             REQUIRED PACKAGES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Page layout and margins
-\usepackage[hmargin=1.0cm, vmargin=0.7cm]{geometry}
+\usepackage[hmargin=1.25cm, vmargin=0.75cm]{geometry}
 
 % Hyperlinks and PDF metadata
 \usepackage[hidelinks]{hyperref}
 
 % Color support
-\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[dvipsnames]{xcolor}
 
 % Absolute positioning
 \usepackage[absolute]{textpos}
@@ -54,7 +54,7 @@
 
 % Column #1 Settings
 \newlength{\sectionvspace}     % Vertical space around sections
-\setlength{\sectionvspace}{0.3cm}
+\setlength{\sectionvspace}{0.2cm}
 \newlength{\rulewidth}         % Thickness of section lines
 \setlength{\rulewidth}{0.4pt}
 \newlength{\subsectionspace}   % Space between subsections
@@ -72,6 +72,31 @@
 % Column #2 Settings
 \newlength{\columnspace}       % Space between columns
 \setlength{\columnspace}{1.5em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           SPACING VARIABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Font sizes
+\newlength{\smallerfont}
+\setlength{\smallerfont}{8pt}
+\newlength{\smallerlinespace}
+\setlength{\smallerlinespace}{10pt}
+
+% Vertical spacing
+\newlength{\tinygap}
+\setlength{\tinygap}{0.1em}
+\newlength{\smallgap}
+\setlength{\smallgap}{0.2em}
+\newlength{\mediumgap}
+\setlength{\mediumgap}{0.3em}
+
+% Icon spacing
+\newlength{\iconspacesmall}
+\setlength{\iconspacesmall}{0.3em}
+
+% Section spacing
+\newlength{\sectionpadding}
+\setlength{\sectionpadding}{0.4em}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              FONT CONFIGURATION
