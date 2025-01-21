@@ -208,7 +208,7 @@
 \newcommand{\namesection}[3]{
     \vspace*{\nameMarginTop}
     \centering{
-        \fontsize{36pt}{54pt}
+        \color{heading}\fontsize{36pt}{54pt}
         \namefont #1 
         \namefont #2
     } \\[5pt]
