@@ -1,20 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DSKE - One Page Two Column Resume
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[draft]{dske-resume-openfont}
+\documentclass{dske-resume-openfont}
 
-% Essential packages grouped together
-\usepackage{fancyhdr}
-\usepackage{fontawesome}
-\usepackage{eso-pic}
-\usepackage{tikz}
-
-% Page style configuration
-\pagestyle{fancy}
-\fancyhf{}
+% Essential packages - cleaned up version
+\usepackage{fontawesome}  % Used for contact icons
+\usepackage{eso-pic}     % Used for background border
+\usepackage{tikz}        % Used for drawing border
 
 % Define the page border using eso-pic with colored frame
-\AddToShipoutPictureBG{%
+\AddToShipoutPictureBG*{%    % Changed to BG* to ensure it's behind everything
     \AtPageLowerLeft{%
         \begin{tikzpicture}[overlay,remember picture]
             \fill[bordercolor] (0,0) rectangle (\paperwidth,\paperheight);
@@ -54,85 +49,87 @@
 %     EDUCATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\sectionwithlines{Education} 
-{\fontsize{\the\smallerfont}{\the\smallerlinespace}\selectfont
-\subsection{Strathclyde University}
-\descript{MSc in Electronic \& Electrical Engineering}
-\location{Sep 2020 | Glasgow, Scotland \\ with distinction}
-\vspace{\smallgap}
+\sectionwithlineabove{Education} 
+{\fontsize{\the\leftColumnFont}{\the\leftColumnLineSpace}\selectfont
+{\fontsize{\the\leftSubsectionSize}{\the\leftSubsectionLineSpace}\selectfont\subsection{Strathclyde University}}
+\leftdescript{MSc in Electronic \& Electrical Engineering}
+{\fontsize{\the\leftColumnFont}{\the\leftColumnLineSpace}\selectfont
+\location{Sep 2020 | Glasgow, Scotland \\ with distinction}}
+\vspace{\leftSmallGap}
 
-\subsection{Universit\`{a} degli Studi di Trieste}
-\descript{BSc in Electronic Engineering}
-\location{Mar 2019 | Trst, Italy}
+{\fontsize{\the\leftSubsectionSize}{\the\leftSubsectionLineSpace}\selectfont\subsection{\texorpdfstring{Universit\`{a} degli\\ Studi di Trieste}{Universita degli Studi di Trieste}}}
+\leftdescript{BSc in Electronic Engineering}
+{\fontsize{\the\leftColumnFont}{\the\leftColumnLineSpace}\selectfont
+\location{Mar 2019 | Trst, Italy}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     CONTACTS & LINKS
+%     CONTACTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\sectionwithlines{Contacts}
-{\fontsize{\the\smallerfont}{\the\smallerlinespace}\selectfont
-\faPhone\hspace{\iconspacesmall} \href{tel:+393317298280}{+39 3317298280}
-\faEnvelope\hspace{\iconspacesmall} \href{mailto:skerkd@gmail.com}{skerkd@gmail.com}
-\faLinkedin\hspace{\iconspacesmall} \href{https://www.linkedin.com/in/denis-\%C5\%A1kerk/}{\bf denisškerk}
-\faGithub\hspace{\iconspacesmall} \href{https://github.com/gib4}{\bf gib4}}
+\sectionwithlineabove{Contacts}
+{\fontsize{\the\leftContactFontSize}{\the\leftContactLineSpace}\selectfont
+\faPhone\hspace{\leftContactIconSpace} \href{tel:+393317298280}{+39 3317298280} \\[0.3em]
+\faEnvelope\hspace{\leftContactIconSpace} \href{mailto:skerkd@gmail.com}{skerkd@gmail.com} \\[0.3em]
+\faLinkedin\hspace{\leftContactIconSpace} \href{https://www.linkedin.com/in/denis-\%C5\%A1kerk/}{\bf denisškerk} \\[0.3em]
+\faGithub\hspace{\leftContactIconSpace} \href{https://github.com/gib4}{\bf gib4}}
 
-\vspace{\sectionpadding}
+\vspace{\leftSectionPadding}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     COURSEWORK
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\sectionwithlines{Coursework}
-{\fontsize{\the\smallerfont}{\the\smallerlinespace}\selectfont
-\subsection{Graduate}
+\sectionwithlineabove{Coursework}
+{\fontsize{\the\leftColumnFont}{\the\leftColumnLineSpace}\selectfont
+{\fontsize{\the\leftSubsectionSize}{\the\leftSubsectionLineSpace}\selectfont\subsection{Graduate}}
 Advanced Micro Controllers \textbullet{} 
 Image \& Video Processing \textbullet{}
 Advanced DSP \textbullet{} 
-DSP Principles
-%Embedded System Design\\
-%Professional Studies and Assignments
-\vspace{\smallgap}
+DSP Principles \textbullet{} 
+Embedded System Design
+\vspace{\leftSmallGap}
 
-\subsection{Undergraduate}
+{\fontsize{\the\leftSubsectionSize}{\the\leftSubsectionLineSpace}\selectfont\subsection{Undergraduate}}
 Electronics \textbullet{} 
 Telecommunications \textbullet{} 
 Computer Networks \textbullet{} 
-Automation
-%Java Programming \\
-%Electromagnetic Fields \\
-%Economics \\
+Automation \textbullet{}
+Economics
 }
 
-\vspace{\sectionpadding}
+\vspace{\leftSectionPadding}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     SKILLS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\sectionwithlines{Skills}
-{\fontsize{\the\smallerfont}{\the\smallerlinespace}\selectfont
-\subsection{Programming}
+\sectionwithlineabove{Skills}
+{\fontsize{\the\leftColumnFont}{\the\leftColumnLineSpace}\selectfont
+{\fontsize{\the\leftSubsectionSize}{\the\leftSubsectionLineSpace}\selectfont\subsection{Programming}}
 Dart \textbullet{} Python \textbullet{} Perl \textbullet{} C \textbullet{} C++ \textbullet{} QT Designer
-\vspace{\smallgap}
+\vspace{\leftSmallGap}
 
-\subsection{OS \& other}
+{\fontsize{\the\leftSubsectionSize}{\the\leftSubsectionLineSpace}\selectfont\subsection{OS \& other}}
 Flutter \textbullet{} Linux Red Hat \textbullet{} \LaTeX{} \textbullet{} HTML
-\vspace{\smallgap}
+\vspace{\leftSmallGap}
 
-\subsection{Languages}
-English {\footnotesize(native)}, Slovenian {\footnotesize(native)}, Italian {\footnotesize(native)}
-\vspace{\smallgap}
+{\fontsize{\the\leftSubsectionSize}{\the\leftSubsectionLineSpace}\selectfont\subsection{Languages}}
+English {\footnotesize(native)} \textbullet{} Slovenian {\footnotesize(native)} \textbullet{} Italian {\footnotesize(native)}
+\vspace{\leftSmallGap}
 
-\subsection{Interpersonal Skills}
+{\fontsize{\the\leftSubsectionSize}{\the\leftSubsectionLineSpace}\selectfont\subsection{Interpersonal Skills}}
 Adaptable \textbullet{} Conflict resolution \textbullet{} Active listener
 }
-\vspace{\subsectionspace}
-\sectionwithlines{Interests}
-{\fontsize{\the\columnTextSize}{\the\columnLineSpace}\selectfont
-Music composition\\
-Consumer Tech\\
-Tennis\\
+\vspace{\leftSectionPadding}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     INTERESTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\sectionwithlineabove{Interests}
+{\fontsize{\the\rightColumnFont}{\the\rightColumnLineSpace}\selectfont
+Music composition \textbullet{} Consumer Tech \textbullet{} Tennis
 }
 
 
@@ -144,16 +141,16 @@ Tennis\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{minipage} 
-\hspace{\columnspace}
+\hspace{\rightColumnSpace}
 \begin{minipage}[t]{0.62\textwidth} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     EXPERIENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\sectionwithlines{Career Experience}
+\sectionwithlineabove{Career Experience}
 \runsubsection{u-blox}
-\descript{| Specialist Engineer 100K100{-}873 Validation Modules IoT}
+\rightdescript{| Specialist Engineer {-} Validation Modules IoT}
 \location{Jan 2024 – Present | Sgonico, Italy}
 \vspace{\topsep}
 \begin{tightemize}
@@ -163,8 +160,8 @@ Tennis\\
 \end{tightemize}
 \sectionsep{}
 
-\runsubsection{Leonardo 100K100{-}873 Electronics}
-\descript{| Avionic Software Engineer 100K100{-}873 Ext. Consultant}
+\runsubsection{Leonardo {-} Electronics}
+\rightdescript{| Avionic Software Engineer {-} Ext. Consultant}
 \location{May 2021 – Present | Ronchi dei Legionari, Italy}
 \vspace{\topsep} % Hacky fix for awkward extra vertical space
 \begin{tightemize}
@@ -177,7 +174,7 @@ Tennis\\
 \sectionsep{}
 
 \runsubsection{RB}
-\descript{| Photovoltaic System Designer}
+\rightdescript{| Photovoltaic System Designer}
 \location{Nov 2020 – April 2021 | Frazione Stazione Prosecco, Italy}
 \vspace{\topsep} % Hacky fix for awkward extra vertical space
 \begin{tightemize}
@@ -188,8 +185,8 @@ Tennis\\
 
 \sectionsep{}
 \runsubsection{Mipot Hi-Tech Company S.p.A.}
-\descript{| Software Engineering Intern in R\&D Department }
-\location{Oct 2018 100K100{-}873 Mar 2019, Nov 2017 | Cormons, Italy}
+\rightdescript{| Software Engineering Intern in R\&D Department }
+\location{Oct 2018 {-} Mar 2019, Nov 2017 | Cormons, Italy}
 \vspace{\topsep}
 \begin{tightemize}
 \item Developed a protocol bridge between Modbus (RS-485) devices and LoRaWAN RTX module using micro controller and UART communication
@@ -205,9 +202,9 @@ Tennis\\
 %     Projects
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\sectionwithlines{Projects}
+\sectionwithlineabove{Projects}
 \runsubsection{ECG generation using GAN}
-\descript{| MSc Dissertation}
+\rightdescript{| MSc Dissertation}
 \location{May 2020 – Aug 2020 | Glasgow, Scotland}
 \vspace{\topsep} % Hacky fix for awkward extra vertical space
 \begin{tightemize}

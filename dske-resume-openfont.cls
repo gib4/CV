@@ -13,27 +13,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                             REQUIRED PACKAGES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Page layout and margins
-\usepackage[hmargin=1.25cm, vmargin=0.75cm]{geometry}
-
-% Hyperlinks and PDF metadata
-\usepackage[hidelinks]{hyperref}
-
-% Color support
-\usepackage[dvipsnames]{xcolor}
-
-% Absolute positioning
-\usepackage[absolute]{textpos}
-
-% Date formatting
-\usepackage[UKenglish]{isodate}
-
-% Section formatting
-\usepackage{titlesec}
-
-% Bibliography
-\usepackage{cite}
-\renewcommand\refname{\vskip -1.5cm}
+% Essential packages - cleaned up version
+\usepackage[hmargin=1.25cm, vmargin=0.75cm]{geometry}  % Used for page margins
+\PassOptionsToPackage{dvipsnames}{xcolor}               % Used for colors
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}                        % Used for links in contacts
+\usepackage[absolute]{textpos}                          % Used for lastupdated positioning
+\usepackage{fontspec}                                   % Used for font configuration
+\usepackage{titlesec}                                   % Used for section formatting
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           THEME CONFIGURATION
@@ -52,26 +39,79 @@
 \newlength{\borderdist}
 \setlength{\borderdist}{0.75cm}
 
-% Column #1 Settings
-\newlength{\sectionvspace}     % Vertical space around sections
-\setlength{\sectionvspace}{0.2cm}
-\newlength{\rulewidth}         % Thickness of section lines
-\setlength{\rulewidth}{0.4pt}
-\newlength{\subsectionspace}   % Space between subsections
-\setlength{\subsectionspace}{0.5em}
+% Name Section spacing
+\newlength{\nameMarginTop}
+\setlength{\nameMarginTop}{0.2cm}
 
-% Icon Settings
-\newcommand{\iconspace}{0.5em} % Space after icons
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           COLUMN #1 SETTINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Font sizes and line spacing
+\newlength{\leftColumnFont}
+\setlength{\leftColumnFont}{8pt}
+\newlength{\leftColumnLineSpace}
+\setlength{\leftColumnLineSpace}{1.2\leftColumnFont}
 
-% Font Settings
-\newlength{\columnTextSize}    % Main text size in columns
-\setlength{\columnTextSize}{9pt}
-\newlength{\columnLineSpace}   % Line spacing in columns
-\setlength{\columnLineSpace}{11pt}
+\newlength{\leftSubsectionSize}
+\setlength{\leftSubsectionSize}{9pt}
+\newlength{\leftSubsectionLineSpace}
+\setlength{\leftSubsectionLineSpace}{1.2\leftSubsectionSize}
 
-% Column #2 Settings
-\newlength{\columnspace}       % Space between columns
-\setlength{\columnspace}{1.5em}
+\newlength{\leftDescriptSize}
+\setlength{\leftDescriptSize}{9pt}
+\newlength{\leftDescriptLineSpace}
+\setlength{\leftDescriptLineSpace}{1.2\leftDescriptSize}
+
+\newlength{\leftContactFontSize}
+\setlength{\leftContactFontSize}{9pt}
+\newlength{\leftContactLineSpace}
+\setlength{\leftContactLineSpace}{1.2\leftContactFontSize}
+
+% Vertical spacing
+\newlength{\leftTinyGap}
+\setlength{\leftTinyGap}{0.1em}
+\newlength{\leftSmallGap}
+\setlength{\leftSmallGap}{0.2cm}
+\newlength{\leftMediumGap}
+\setlength{\leftMediumGap}{0.3em}
+
+% Section spacing
+\newlength{\leftSectionPadding}
+\setlength{\leftSectionPadding}{0.4em}
+
+% Contact section specific spacing
+\newlength{\leftContactIconSpace}
+\setlength{\leftContactIconSpace}{0.4em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           COLUMN #2 SETTINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Font sizes and line spacing
+\newlength{\rightColumnFont}
+\setlength{\rightColumnFont}{9pt}
+\newlength{\rightColumnLineSpace}
+\setlength{\rightColumnLineSpace}{1.2\rightColumnFont}
+
+\newlength{\rightDescriptSize}
+\setlength{\rightDescriptSize}{10pt}
+\newlength{\rightDescriptLineSpace}
+\setlength{\rightDescriptLineSpace}{1.2\rightDescriptSize}
+
+% Column spacing
+\newlength{\rightColumnSpace}
+\setlength{\rightColumnSpace}{1.5em}
+
+% Section spacing
+\newlength{\rightSectionSpace}
+\setlength{\rightSectionSpace}{0.12cm}
+\newlength{\rightRuleWidth}
+\setlength{\rightRuleWidth}{0.4pt}
+\newlength{\rightSubsectionSpace}
+\setlength{\rightSubsectionSpace}{0.6em}
+
+% Icon spacing
+\newlength{\rightIconSpace}
+\setlength{\rightIconSpace}{0.5em}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           SPACING VARIABLES
@@ -85,8 +125,6 @@
 % Vertical spacing
 \newlength{\tinygap}
 \setlength{\tinygap}{0.1em}
-\newlength{\smallgap}
-\setlength{\smallgap}{0.2em}
 \newlength{\mediumgap}
 \setlength{\mediumgap}{0.3em}
 
@@ -97,6 +135,18 @@
 % Section spacing
 \newlength{\sectionpadding}
 \setlength{\sectionpadding}{0.4em}
+
+% Contact section specific spacing
+\newlength{\contacticonspace}
+\setlength{\contacticonspace}{0.4em}
+\newlength{\contactlinespace}
+\setlength{\contactlinespace}{1.2em}
+\newlength{\contactfontsize}
+\setlength{\contactfontsize}{9pt}
+
+% Font sizes for left column
+\newlength{\leftsubsectionsize}
+\setlength{\leftsubsectionsize}{10pt}  % Smaller than default subsection size
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              FONT CONFIGURATION
@@ -141,19 +191,22 @@
 %                            COMMAND DEFINITIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Last Updated Date
+% Last Updated Date with background
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{1mm}
 \newcommand{\lastupdated}{
-    \begin{textblock}{60}(155,5)
-        \color{datecolor}
-        \fontsize{8pt}{10pt}\selectfont 
-        Last Updated on \today
+    \begin{textblock}{60}(155,7)
+        \colorbox{white}{%
+            \color{datecolor}
+            \fontsize{8pt}{10pt}\selectfont 
+            Last Updated on \today
+        }
     \end{textblock}
 }
 
 % Name Section
 \newcommand{\namesection}[3]{
+    \vspace*{\nameMarginTop}
     \centering{
         \fontsize{36pt}{54pt}
         \namefont #1 
@@ -163,8 +216,8 @@
         \color{heading}
         \sffamily\fontsize{11pt}{14pt}\selectfont #3
     }
-    \noindent\makebox[\linewidth]{\color{heading}\rule{\paperwidth}{0.4pt}}
-    \vspace{-15pt}
+    \noindent\makebox[\linewidth]{\color{heading}\rule{\dimexpr\paperwidth-2\borderdist\relax}{0.2pt}}
+    \vspace{-20pt}
 }
 
 % Section Formatting
@@ -191,9 +244,18 @@
     \color{subheading}\fontsize{12pt}{12pt}\selectfont\bfseries\uppercase {#1} \normalfont
 }
 
-% Description Text
-\newcommand{\descript}[1]{
-    \color{subheading}\raggedright\scshape\fontsize{11pt}{13pt}\selectfont {#1 \\} \normalfont
+% Description Text for left column
+\newcommand{\leftdescript}[1]{
+    \color{subheading}\raggedright\scshape
+    \fontsize{\the\leftDescriptSize}{\the\leftDescriptLineSpace}\selectfont
+    {#1 \\} \normalfont
+}
+
+% Description Text for right column
+\newcommand{\rightdescript}[1]{
+    \color{subheading}\raggedright\scshape
+    \fontsize{\the\rightDescriptSize}{\the\rightDescriptLineSpace}\selectfont
+    {#1 \\} \normalfont
 }
 
 % Location Text
@@ -206,11 +268,32 @@
     \vspace{-\topsep}\begin{itemize}\itemsep1pt \parskip0pt \parsep0pt
 }{\end{itemize}\vspace{-\topsep}}
 
+
+% TITLE SECTION OPTIONS
 % Section with Lines
 \newcommand{\sectionwithlines}[1]{%
-    \vspace{\sectionvspace}%
-    {\noindent\color{accent}\rule{\linewidth}{\rulewidth}}%
+    \vspace{\rightSectionSpace}%
+    {\noindent\color{accent}\rule{\linewidth}{\rightRuleWidth}}%
     \section{#1}%
-    {\noindent\color{accent}\rule{\linewidth}{\rulewidth}}%
-    \vspace{\sectionvspace}%
+    {\noindent\color{accent}\rule{\linewidth}{\rightRuleWidth}}%
+    \vspace{\rightSectionSpace}%
+}
+
+% Section with Line above
+\newcommand{\sectionwithlineabove}[1]{%
+    \vspace{\rightSectionSpace}%
+    \section{#1}%
+    {\noindent\color{accent}\rule{\linewidth}{\rightRuleWidth}}%
+    \vspace{\rightSectionSpace}%
+}
+
+% Section with title and line
+\newcommand{\customSection}[1]{%
+    \vspace{\rightSectionSpace}%
+    \noindent% Ensure proper alignment
+    {\color{heading}\scshape\fontsize{14pt}{20pt}\selectfont #1}%
+    \hspace{0.5em}% Space between text and line
+    {\color{accent}\leaders\hrule height 0.4pt depth 0pt\hfill}% Line with adjusted height/depth
+    \par% Add newline
+    \vspace{\rightSectionSpace}%
 }
