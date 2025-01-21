@@ -1,16 +1,7 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DSKE - One Page Two Column Resume
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[draft]{dske-resume-openfont}
-
-% Color scheme configuration
-\definecolor{primary}{RGB}{43, 43, 43}        % Main text color
-\definecolor{accent}{RGB}{0, 70, 140}         % Section lines and borders
-\definecolor{heading}{RGB}{106, 106, 106}     % Section headings
-\definecolor{subheading}{RGB}{51, 51, 51}     % Subsection headings
-\definecolor{datecolor}{RGB}{102, 102, 102}   % Dates and locations
-\definecolor{bordercolor}{RGB}{173, 216, 230}    % Border color (light pastel blue)
 
 % Essential packages grouped together
 \usepackage{fancyhdr}
@@ -26,12 +17,11 @@
 \AddToShipoutPictureBG{%
     \AtPageLowerLeft{%
         \begin{tikzpicture}[overlay,remember picture]
-            \fill[white] (0,0) rectangle (\paperwidth,\paperheight);
             \fill[bordercolor] (0,0) rectangle (\paperwidth,\paperheight);
-            \fill[white] (0.75cm,0.75cm) rectangle (\paperwidth-0.75cm,\paperheight-0.75cm);
+            \fill[backgroundcolor] (\borderdist,\borderdist) rectangle (\paperwidth-\borderdist,\paperheight-\borderdist);
             \draw[bordercolor, line width=1pt]
-                (0.75cm,0.75cm) rectangle
-                (\paperwidth-0.75cm,\paperheight-0.75cm);
+                (\borderdist,\borderdist) rectangle
+                (\paperwidth-\borderdist,\paperheight-\borderdist);
         \end{tikzpicture}%
     }%
 }
@@ -49,7 +39,7 @@
 %     TITLE NAME
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\namesection{Denis}{Škerk}{ % \urlstyle{same}\href{http://debarghyadas.com}{debarghyadas.com}| %\href{http://fb.co/dd}{fb.co/dd}\\
+\namesection{Denis}{Škerk}{
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,93 +48,92 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{minipage}[t]{0.33\textwidth} 
+\begin{minipage}[t]{0.31\textwidth} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     EDUCATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \sectionwithlines{Education} 
+{\fontsize{\the\columnTextSize}{\the\columnLineSpace}\selectfont
 
 \subsection{Strathclyde University}
 \descript{MSc in Electronic \& Electrical Engineering}
 \location{Sep 2020 | Glasgow, Scotland}
 with distinction\\
-\sectionsep
+\vspace{\subsectionspace}
 
 \subsection{Universit\`{a} degli\\ Studi di Trieste}
 \descript{BSc in Electronic Engineering}
 \location{Mar 2019 | Trst, Italy}
-\sectionsep
 
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     CONTACTS & LINKS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\sectionwithlines{Contacts} 
-\faPhone\hspace{0.5em} \href{tel:+393317298280}{+39 3317298280}\\
-\faEnvelope\hspace{0.5em} \href{mailto:skerkd@gmail.com}{skerkd@gmail.com} \\
-\faLinkedin\hspace{0.5em} \href{https://www.linkedin.com/in/denis-\%C5\%A1kerk/}{\bf denisškerk} \\
-\faGithub\hspace{0.5em} \href{https://github.com/gib4}{\bf gib4} \\
-%\faFacebook\hspace{0.5em} \href{https://facebook/dd}{\bf dd} \\
-%\faYoutube\hspace{0.5em} \href{https://www.youtube.com/user/DeedyDash007}{\bf DeedyDash007} \\
-%\faTwitter\hspace{0.5em} \href{https://twitter.com/debarghya_das}{\bf @debarghya\_das} \\
-%\faQuora\hspace{0.5em} \href{https://www.quora.com/Debarghya-Das}{\bf Debarghya-Das}
+\sectionwithlines{Contacts}
+\faPhone\hspace{\iconspace} \href{tel:+393317298280}{+39 3317298280}\\
+\faEnvelope\hspace{\iconspace} \href{mailto:skerkd@gmail.com}{skerkd@gmail.com} \\
+\faLinkedin\hspace{\iconspace} \href{https://www.linkedin.com/in/denis-\%C5\%A1kerk/}{\bf denisškerk} \\
+\faGithub\hspace{\iconspace} \href{https://github.com/gib4}{\bf gib4} \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     COURSEWORK
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \sectionwithlines{Coursework}
+{\fontsize{\the\columnTextSize}{\the\columnLineSpace}\selectfont
 \subsection{Graduate}
 Advanced Micro Controllers \\
 Image \& Video Processing\\
 Advanced DSP \\
 DSP Principles\\
 Embedded System Design\\
-Professional Studies and Assignments \sectionsep
+Professional Studies and Assignments
+
 \subsection{Undergraduate}
-Electronics \\
+Electronics\\
 Telecommunications \\
 Computer Networks \\
 Automation \& Control Systems \\
 Java Programming \\
 Electromagnetic Fields \\
 Economics \\
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     SKILLS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \sectionwithlines{Skills}
+{\fontsize{\the\columnTextSize}{\the\columnLineSpace}\selectfont
 
 \subsection{Programming}
 Dart \textbullet{} Python \textbullet{} C \textbullet{} C++ 
 \textbullet{} QT Designer\\
-
-\sectionsep
+\vspace{\subsectionspace}
 
 \subsection{OS \& other}
 Flutter \textbullet{} Linux Red Hat
 \LaTeX \textbullet{} HTML\\ 
-
-\sectionsep
+\vspace{\subsectionspace}
 
 \subsection{Languages}
 English {\footnotesize \textit{\textbf{(advanced) }}}, Slovenian {\footnotesize \textit{\textbf{(native) }}}, \\ Italian {\footnotesize \textit{\textbf{(native) }}}
-
-\sectionsep
+\vspace{\subsectionspace}
 
 \subsection{Interpersonal Skills}
 Can easily adjust in different situations \textbullet{} Conflict resolution and mediation \textbullet{} Listening skills\\
+}
 
-\sectionsep
-
-\section{Interests}
+\sectionwithlines{Interests}
+{\fontsize{\the\columnTextSize}{\the\columnLineSpace}\selectfont
 Music composition\\
 Consumer Tech\\
 Tennis\\
+}
 
 
 
@@ -155,16 +144,14 @@ Tennis\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{minipage} 
-\hfill
-\begin{minipage}[t]{0.66\textwidth} 
+\hspace{\columnspace}
+\begin{minipage}[t]{0.62\textwidth} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     EXPERIENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \sectionwithlines{Career Experience}
-\sectionsep
-
 \runsubsection{u-blox}
 \descript{| Specialist Engineer - Validation Modules IoT}
 \location{Jan 2024 – Present | Sgonico, Italy}
