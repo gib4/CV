@@ -37,11 +37,11 @@
 
 % Border Settings
 \newlength{\borderdist}
-\setlength{\borderdist}{0.75cm}
+\setlength{\borderdist}{0.7cm}
 
 % Name Section spacing
 \newlength{\nameMarginTop}
-\setlength{\nameMarginTop}{0.2cm}
+\setlength{\nameMarginTop}{0.01cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           COLUMN #1 SETTINGS
@@ -153,38 +153,54 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{fontspec}
 
-% Main font
-\setmainfont{Arial}[
-    BoldFont=Arial Bold,
-    ItalicFont=Arial Italic
+% Main font - Raleway for general text
+\setmainfont{Raleway}[
+    Path = fonts/raleway/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
 ]
 
-% Sans-serif font for headings
-\setsansfont{Arial}[
-    BoldFont=Arial Bold,
-    ItalicFont=Arial Italic
+% Sans-serif font - Raleway for modern look
+\setsansfont{Raleway}[
+    Path = fonts/raleway/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic
 ]
 
-% Special font for name
-\newfontfamily\namefont{Times New Roman}[
-    BoldFont=Times New Roman Bold
+% Special font for name - First name in Thin, Surname in Regular
+\newfontfamily\firstnamefont{Raleway}[
+    Path = fonts/raleway/,
+    Extension = .ttf,
+    UprightFont = *-Thin
 ]
 
-% Main content font with all variants
-\setmainfont[
-    BoldFont=Arial Bold,
-    ItalicFont=Arial Italic,
-    BoldItalicFont=Arial Bold Italic
-]{Arial}
-
-% Section fonts
-\newfontfamily\headingfont{Arial}[
-    BoldFont=Arial Bold,
-    ItalicFont=Arial Italic
+\newfontfamily\surnamefont{Raleway}[
+    Path = fonts/raleway/,
+    Extension = .ttf,
+    UprightFont = *-Regular
 ]
-\newfontfamily\subheadingfont{Arial}[
-    BoldFont=Arial Bold,
-    ItalicFont=Arial Italic
+
+% Heading font - Raleway for elegant headings
+\newfontfamily\headingfont{Raleway}[
+    Path = fonts/raleway/,
+    Extension = .ttf,
+    UprightFont = *-Medium,
+    BoldFont = *-Bold,
+    ItalicFont = *-MediumItalic
+]
+
+% Subheading font - Raleway for clean look
+\newfontfamily\subheadingfont{Raleway}[
+    Path = fonts/raleway/,
+    Extension = .ttf,
+    UprightFont = *-Medium,
+    BoldFont = *-SemiBold,
+    ItalicFont = *-MediumItalic
 ]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -209,8 +225,8 @@
     \vspace*{\nameMarginTop}
     \centering{
         \color{heading}\fontsize{36pt}{54pt}
-        \namefont #1 
-        \namefont #2
+        \firstnamefont #1 
+        \surnamefont #2
     } \\[5pt]
     \centering{
         \color{heading}
@@ -274,7 +290,9 @@
 \newcommand{\sectionwithlines}[1]{%
     \vspace{\rightSectionSpace}%
     {\noindent\color{accent}\rule{\linewidth}{\rightRuleWidth}}%
+    \vspace{-0.3em}%
     \section{#1}%
+    \vspace{-0.3em}%
     {\noindent\color{accent}\rule{\linewidth}{\rightRuleWidth}}%
     \vspace{\rightSectionSpace}%
 }
