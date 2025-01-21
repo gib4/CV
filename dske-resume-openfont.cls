@@ -97,6 +97,11 @@
 \newlength{\rightDescriptLineSpace}
 \setlength{\rightDescriptLineSpace}{1.2\rightDescriptSize}
 
+\newlength{\locationSize}
+\setlength{\locationSize}{8pt}
+\newlength{\locationLineSpace}
+\setlength{\locationLineSpace}{1.2\locationSize}
+
 % Column spacing
 \newlength{\rightColumnSpace}
 \setlength{\rightColumnSpace}{1.5em}
@@ -276,7 +281,9 @@
 
 % Location Text
 \newcommand{\location}[1]{
-    \color{datecolor}\raggedright\fontsize{10pt}{12pt}\selectfont {#1\\} \normalfont
+    \color{datecolor}\raggedright
+    \fontsize{\the\locationSize}{\the\locationLineSpace}\selectfont 
+    {#1\\} \normalfont
 }
 
 % Tight Bullet Lists
