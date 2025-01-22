@@ -5,37 +5,29 @@
 
 % Essential packages - cleaned up version
 \usepackage{fontawesome}  % Used for contact icons
-\usepackage{eso-pic}     % Used for background border
-\usepackage{tikz}        % Used for drawing border
-
-% Define the page border using eso-pic with colored frame
-\AddToShipoutPictureBG*{%    % Changed to BG* to ensure it's behind everything
-    \AtPageLowerLeft{%
-        \begin{tikzpicture}[overlay,remember picture]
-            \fill[bordercolor] (0,0) rectangle (\paperwidth,\paperheight);
-            \fill[backgroundcolor] (\borderdist,\borderdist) rectangle (\paperwidth-\borderdist,\paperheight-\borderdist);
-            \draw[bordercolor, line width=1pt]
-                (\borderdist,\borderdist) rectangle
-                (\paperwidth-\borderdist,\paperheight-\borderdist);
-        \end{tikzpicture}%
-    }%
-}
 
 \begin{document}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%     LAST UPDATED DATE
+%     THEME CONFIGURATION
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Add the decoration
+\namesectionFullWidth{Denis}{Škerk}{}
+\pageborder
+
+%\namesectionColumn{Denis}{Škerk}{}
+%\columnbackground
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COMMON CONFIGURATION
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \lastupdated{}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     TITLE NAME
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\namesection{Denis}{Škerk}{
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -69,10 +61,10 @@
 
 \sectionwithlines{Contacts}
 {\fontsize{\the\leftContactFontSize}{\the\leftContactLineSpace}\selectfont
-\faPhone\hspace{\leftContactIconSpace} \href{tel:+393317298280}{+39 3317298280} \\[0.3em]
-\faEnvelope\hspace{\leftContactIconSpace} \href{mailto:skerkd@gmail.com}{skerkd@gmail.com} \\[0.3em]
-\faLinkedin\hspace{\leftContactIconSpace} \href{https://www.linkedin.com/in/denis-\%C5\%A1kerk/}{\bf denisškerk} \\[0.3em]
-\faGithub\hspace{\leftContactIconSpace} \href{https://github.com/gib4}{\bf gib4}}
+{\color{iconcolor}\faPhone}\hspace{\leftContactIconSpace} \href{tel:+393317298280}{+39 3317298280} \\[0.3em]
+{\color{iconcolor}\faEnvelope}\hspace{\leftContactIconSpace} \href{mailto:skerkd@gmail.com}{skerkd@gmail.com} \\[0.3em]
+{\color{iconcolor}\faLinkedin}\hspace{\leftContactIconSpace} \href{https://www.linkedin.com/in/denis-\%C5\%A1kerk/}{denisškerk} \\[0.3em]
+{\color{iconcolor}\faGithub}\hspace{\leftContactIconSpace} \href{https://github.com/gib4}{gib4}}
 
 \vspace{\leftSectionPadding}
 

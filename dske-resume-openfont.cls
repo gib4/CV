@@ -21,19 +21,40 @@
 \usepackage[absolute]{textpos}                          % Used for lastupdated positioning
 \usepackage{fontspec}                                   % Used for font configuration
 \usepackage{titlesec}                                   % Used for section formatting
+\usepackage{eso-pic}                                    % Used for background border
+\usepackage{tikz}                                       % Used for drawing border
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           THEME CONFIGURATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Additional Color Palette
+\definecolor{jet}{RGB}{42, 45, 49}             % #2A2D31
+\definecolor{royalPurple}{RGB}{107, 83, 146}   % #6F5392
+\definecolor{darkCornflower}{RGB}{44, 68, 111} % #2C446F
+\definecolor{egyptianBlue}{RGB}{32, 52, 79}    % #20349F
+\definecolor{slateGray}{RGB}{108, 127, 147}    % #6C7F93
+\definecolor{blueGray}{RGB}{121, 154, 204}     % #799ACC
+\definecolor{lightPastelBlue}{RGB}{173, 216, 230}
+\definecolor{blueGreen}{RGB}{53, 158, 191}     % #359EBF
+\definecolor{viridianGreen}{RGB}{70, 143, 146} % #468F92
+\definecolor{opal}{RGB}{178, 209, 201}         % #B2D1C9
+\definecolor{darkSeaGreen}{RGB}{144, 174, 133} % #90AE85
+\definecolor{fernGreen}{RGB}{100, 124, 65}     % #647C41
+\definecolor{castletonGreen}{RGB}{0, 83, 66}   % #005842
+\definecolor{bronze}{RGB}{205, 133, 63}        % #CD853F
+\definecolor{kobe}{RGB}{123, 53, 22}           % #7A3516
+\definecolor{upMaroon}{RGB}{119, 11, 14}       % #770B0E
+
 % Color Scheme
-\definecolor{primary}{RGB}{43, 43, 43}        % Main text color
-\definecolor{accent}{RGB}{0, 70, 140}         % Section lines and borders
-\definecolor{heading}{RGB}{106, 106, 106}     % Section headings
-\definecolor{subheading}{RGB}{51, 51, 51}     % Subsection headings
-\definecolor{datecolor}{RGB}{102, 102, 102}   % Dates and locations
-\definecolor{bordercolor}{RGB}{173, 216, 230} % Border color (light pastel blue)
+\definecolor{primary}{RGB}{43, 43, 43}         % Main text color
+\definecolor{accent}{RGB}{107, 83, 146}        % Section lines and borders (using royalPurple)
+\definecolor{heading}{RGB}{106, 106, 106}      % Section headings
+\definecolor{subheading}{RGB}{51, 51, 51}      % Subsection headings
+\definecolor{datecolor}{RGB}{102, 102, 102}    % Dates and locations
+\definecolor{bordercolor}{RGB}{107, 83, 146}   % Border color (using royalPurple)
 \definecolor{backgroundcolor}{RGB}{240, 240, 240} % Background color (light gray)
+\definecolor{iconcolor}{RGB}{107, 83, 146}   % Border color (using royalPurple)
 
 % Border Settings
 \newlength{\borderdist}
@@ -153,6 +174,13 @@
 \newlength{\leftsubsectionsize}
 \setlength{\leftsubsectionsize}{10pt}  % Smaller than default subsection size
 
+% Calculate the width of the first column including spacing
+\newlength{\colwidth}
+\setlength{\colwidth}{0.31\paperwidth}
+\addtolength{\colwidth}{-0.31\borderdist}
+\addtolength{\colwidth}{-0.31\borderdist}
+\addtolength{\colwidth}{\rightColumnSpace}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              FONT CONFIGURATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -225,8 +253,8 @@
     \end{textblock}
 }
 
-% Name Section
-\newcommand{\namesection}[3]{
+% Name Section for full width
+\newcommand{\namesectionFullWidth}[3]{
     \vspace*{\nameMarginTop}
     \centering{
         \color{heading}\fontsize{36pt}{54pt}
@@ -237,8 +265,26 @@
         \color{heading}
         \sffamily\fontsize{11pt}{14pt}\selectfont #3
     }
-    \noindent\makebox[\linewidth]{\color{heading}\rule{\dimexpr\paperwidth-2\borderdist\relax}{0.2pt}}
+    \noindent\makebox[\linewidth]{\color{accent}\rule{\dimexpr\paperwidth-2\borderdist\relax}{0.2pt}}
     \vspace{-20pt}
+}
+
+% Name Section for column width
+\newcommand{\namesectionColumn}[3]{
+    \vspace*{-0.5cm}
+    \begin{minipage}{\colwidth}
+        \centering{
+            \color{heading}\fontsize{36pt}{54pt}
+            \firstnamefont #1 
+            \surnamefont #2
+        } \\[5pt]
+        \centering{
+            \color{heading}
+            \sffamily\fontsize{11pt}{14pt}\selectfont #3
+        }
+        \noindent\makebox[\linewidth]{\color{accent}\rule{\colwidth}{0.2pt}}
+    \end{minipage}
+    \vspace{-15pt}
 }
 
 % Section Formatting
@@ -322,3 +368,37 @@
     \par% Add newline
     \vspace{\rightSectionSpace}%
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           BORDER CONFIGURATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define the page border command
+\newcommand{\pageborder}{%
+    \AddToShipoutPictureBG*{%    % Changed to BG* to ensure it's behind everything
+        \AtPageLowerLeft{%
+            \begin{tikzpicture}[overlay,remember picture]
+                \fill[bordercolor] (0,0) rectangle (\paperwidth,\paperheight);
+                \fill[backgroundcolor] (\borderdist,\borderdist) rectangle (\paperwidth-\borderdist,\paperheight-\borderdist);
+                \draw[bordercolor!80, line width=1pt]
+                    (\borderdist,\borderdist) rectangle
+                    (\paperwidth-\borderdist,\paperheight-\borderdist);
+            \end{tikzpicture}%
+        }%
+    }%
+}
+
+% Define the column background command
+\newcommand{\columnbackground}{%
+    \AddToShipoutPictureBG*{%
+        \AtPageLowerLeft{%
+            \begin{tikzpicture}[overlay,remember picture]
+                % Draw the background rectangle for column 1 - full height
+                \path[fill=accent!20] 
+                    (2*\borderdist,0) 
+                    rectangle 
+                    ({\borderdist+\colwidth},\paperheight);
+            \end{tikzpicture}%
+        }%
+    }%
+}
+
